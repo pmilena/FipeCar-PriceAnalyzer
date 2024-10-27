@@ -24,6 +24,7 @@ public class Principal {
 
     public void ExibeMenu(){
         System.out.println("""
+	
 	***OPÇÕES***
 	Carro
 	Moto
@@ -40,7 +41,6 @@ public class Principal {
         while (!itemPesquisado.equals("carros") && !itemPesquisado.equals("caminhoes") && !itemPesquisado.equals("motos")) {
             this.ExibeMenu();
             itemPesquisado = formatador.toPlural(leitor.nextLine().toLowerCase());
-            System.out.println("TESTE: " + itemPesquisado);
 
             if (itemPesquisado.equals("carros") || itemPesquisado.equals("caminhoes") || itemPesquisado.equals("motos")) {
                 var json = consumo.obterDados(ENDERECO + itemPesquisado + "/marcas");
@@ -49,7 +49,7 @@ public class Principal {
                                 .sorted(Comparator.comparing(Dados::codigo))
                                         .forEach(System.out::println);
 
-                System.out.println("Digite o código do modelo que deseja pesquisar: ");
+                System.out.println("\n Digite o código da marca que deseja pesquisar: ");
                 var codigoMarca = leitor.nextLine();
 
                 json= consumo.obterDados(ENDERECO + itemPesquisado + "/marcas/" + codigoMarca + "/modelos");
@@ -60,7 +60,7 @@ public class Principal {
                         .sorted(Comparator.comparing(Dados::codigo))
                         .forEach(System.out::println);
 
-                System.out.println("Digite um trecho do nome do veículo para consulta");
+                System.out.println("\n Digite um trecho do nome do veículo para consulta");
                 var nomeVeiculo = leitor.nextLine();
 
                 List<Dados> listaMarcas= modelo.modelos().stream()
